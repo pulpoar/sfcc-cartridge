@@ -1,0 +1,5 @@
+<isif condition="${!pdict.pulpoARSlug}">
+    <p>${Resource.msg('pulpo.missing.project.slug','pulpo',null)}</p>
+<iselse/>
+    <iframe src="https://plugin.pulpoar.com/vto/${pdict.pulpoARSlug}" allow="camera *;" style="border: none;width: 1080px;height: 720px;"></iframe>
+</isif>

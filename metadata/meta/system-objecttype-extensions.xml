@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+
+    <type-extension type-id="Product">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="enablePulpoAR">
+                <display-name xml:lang="x-default">Enable Pulpo AR</display-name>
+                <description xml:lang="x-default">Enable Pulpo AR for this product</description>
+                <type>boolean</type>
+                <site-specific-flag>true</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <visible-flag>false</visible-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <order-required-flag>false</order-required-flag>
+                <externally-defined-flag>false</externally-defined-flag>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="PulpoAR">
+                <display-name xml:lang="x-default">Pulpo AR Configs</display-name>
+                <attribute attribute-id="enablePulpoAR"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="enablePulpoAR">
+                <display-name xml:lang="x-default">Enable Pulpo AR</display-name>
+                <type>enum-of-string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <value-definitions>
+                    <value-definition default="true">
+                        <display xml:lang="x-default">NO</display>
+                        <value>NO</value>
+                    </value-definition>
+                    <value-definition>
+                        <display xml:lang="x-default">YES FOR ALL PRODUCTS</display>
+                        <value>YES</value>
+                    </value-definition>
+                    <value-definition>
+                        <display xml:lang="x-default">YES FOR SELECTED PRODUCTS</display>
+                        <value>PRODUCT</value>
+                    </value-definition>
+                    <value-definition>
+                        <display xml:lang="x-default">YES FOR PAGE DESIGNER ONLY</display>
+                        <value>PAGEDESIGNER</value>
+                    </value-definition>
+                </value-definitions>
+            </attribute-definition>
+            <attribute-definition attribute-id="pulpoARSlug">
+                <display-name xml:lang="x-default">Pulpo AR Project Slug</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="PulpoAR">
+                <display-name xml:lang="x-default">Pulpo AR Configs</display-name>
+                <attribute attribute-id="enablePulpoAR"/>
+                <attribute attribute-id="pulpoARSlug"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+</metadata>
