@@ -15,6 +15,11 @@ exports.afterFooter = function () {
     }
 
     var ISML = require('dw/template/ISML');
+    var URLUtils = require('dw/web/URLUtils');
+    var addToCartUrl = URLUtils.url('Cart-AddProduct');
 
-    ISML.renderTemplate('pulpoSDK', {pulpoSDKurl: pulpoSDKurl});
+    ISML.renderTemplate('pulpoSDK', {
+        pulpoSDKurl: pulpoSDKurl,
+        addToCartUrl: addToCartUrl
+    });
 };

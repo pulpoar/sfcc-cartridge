@@ -1,16 +1,49 @@
 'use strict';
 
 function events() {
-    $(document).ready(function () {
-        pulpoar.onGoToProduct((payload) => {
-            if (payload.web_link) {
-                window.location.replace(payload.web_link);
-            }
+    if (pulpoar) {
+        $(document).ready(function () {
+            pulpoar.onGoToProduct((payload) => {
+                if (payload.web_link) {
+                    window.location.replace(payload[0].web_link);
+                }
+            });
+            pulpoar.onAddToCart((payload) => {
+                var addToCartUrl = $('.pulpo-sdk').data('add-to-cart-url');
+                if (payload.length > 0) {
+                    payload.forEach(function(item) {
+                        if (addToCartUrl && item.slug) {
+                            var form = {
+                                pid: item.slug.toUpperCase(),
+                                quantity: 1
+                            };
+                            $.ajax({
+                                url: addToCartUrl,
+                                method: 'POST',
+                                data: form,
+                                success: function (response) {
+                                    console.log(response);
+                                    console.log('akif');
+                                    $('.minicart').trigger('count:update', response);
+                                    var messageType = response.error ? 'alert-danger' : 'alert-success';
+                                    if ($('.add-to-cart-messages').length === 0) {
+                                        $('body').append('<div class="add-to-cart-messages"></div>');
+                                    }
+                                    $('.add-to-cart-messages').append(
+                                        '<div class="alert ' + messageType + ' add-to-basket-alert text-center" role="alert">'
+                                        + response.message + '</div>'
+                                    );
+                                    setTimeout(function () {
+                                        $('.add-to-basket-alert').remove();
+                                    }, 5000);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
         });
-        pulpoar.onAddToCart((payload) => {
-            console.log(JSON.stringify(payload))
-        });
-    });
+    }
 }
 
 module.exports = {

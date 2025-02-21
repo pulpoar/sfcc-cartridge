@@ -1,1 +1,3 @@
-<script src="${pdict.pulpoSDKurl}"></script>
+<div class="pulpo-sdk" data-add-to-cart-url="${pdict.addToCartUrl}">
+    <script src="${pdict.pulpoSDKurl}"></script>
+</div>
