@@ -1,0 +1,61 @@
+{
+    "step-types": {
+        "chunk-script-module-step": [
+            {
+                "@type-id": "custom.pulpo.generateProductExport",
+                "@supports-parallel-execution": "true",
+                "@supports-site-context": "true",
+                "@supports-organization-context": "false",
+                "description":"Generate JSON Export for VTO products",
+                "module": "plugin_pulpoar/cartridge/scripts/jobs/generateProductExport.js",
+                "before-step-function": "beforeStep",
+                "total-count-function": "getTotalCount",
+                "before-chunk-function": "",
+                "read-function": "read",
+                "process-function": "process",
+                "write-function": "write",
+                "after-chunk-function": "",
+                "after-step-function": "afterStep",
+                "chunk-size": 1000,
+                "transactional": "false",
+                "parameters": {
+                    "parameter": [
+                        {
+                            "@name": "ExportPath",
+                            "description": "Export path for generated products",
+                            "@type": "string",
+                            "@required": "true",
+                            "default-value": "src/export/pulpo"
+                        },
+                        {
+                            "@name": "ProcessProducts",
+                            "description": "Select ALL for exporting complete catalog and select ENABLED for exporting Pulpo Enabled products.",
+                            "@type": "string",
+                            "@required": false,
+                            "@trim": true,
+                            "default-value": "ENABLED",
+                            "enum-values": {
+                                "value": [
+                                    "ALL",
+                                    "ENABLED"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "status-codes": {
+                    "status": [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when an error occurred."
+                        },
+                        {
+                            "@code": "OK",
+                            "description": "Used when execution was successful."
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

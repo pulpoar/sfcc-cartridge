@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="Pulpo Product Export">
+        <description/>
+        <parameters/>
+        <split sequential="false">
+            <contexts template-ref="template_30">
+                <all-storefront-sites/>
+            </contexts>
+            <flow-template template-id="template_30">
+                <step step-id="generateProductExport" type="custom.pulpo.generateProductExport" enforce-restart="false">
+                    <description/>
+                    <parameters>
+                        <parameter name="ExportPath">src/export/pulpo</parameter>
+                        <parameter name="ProcessProducts">ENABLED</parameter>
+                    </parameters>
+                </step>
+            </flow-template>
+        </split>
+        <rules/>
+        <triggers>
+            <run-once enabled="false">
+                <date>2025-03-07Z</date>
+                <time>09:44:00.000Z</time>
+            </run-once>
+        </triggers>
+    </job>
+
+</jobs>
