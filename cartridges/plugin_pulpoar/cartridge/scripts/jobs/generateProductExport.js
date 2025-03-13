@@ -72,6 +72,7 @@ function write(products, params) {
     collections.forEach(products, function (product) {
         var productObj = {};
         if ((params.ProcessProducts === 'ENABLED' && product.custom.enablePulpoAR) || params.ProcessProducts === 'ALL') {
+            // TODO: Add related product data when data format is decided.
             productObj.ID = product.ID;
             productObj.name = product.name;
             productArray.push(productObj);

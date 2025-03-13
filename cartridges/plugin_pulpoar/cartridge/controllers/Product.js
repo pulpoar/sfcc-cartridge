@@ -12,11 +12,11 @@ server.append('Show', function (req, res, next) {
 
     if ((enablePulpoSite === 'YES' || (enablePulpoSite === 'PRODUCT' && enablePulpoProduct)) && !empty(pulpoARSlug)) {
         data.enablePulpo = true;
+        data.pulpoARSlug = pulpoARSlug;
     } else {
         data.enablePulpo = false;
     }
 
-    data.pulpoARSlug = pulpoARSlug;
     res.setViewData(data);
 
     next();

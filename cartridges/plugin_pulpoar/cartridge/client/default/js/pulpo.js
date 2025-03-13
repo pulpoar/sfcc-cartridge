@@ -4,7 +4,7 @@ function events() {
     if (pulpoar) {
         $(document).ready(function () {
             pulpoar.onGoToProduct((payload) => {
-                if (payload.web_link) {
+                if (payload[0].web_link) {
                     window.location.replace(payload[0].web_link);
                 }
             });
@@ -22,8 +22,6 @@ function events() {
                                 method: 'POST',
                                 data: form,
                                 success: function (response) {
-                                    console.log(response);
-                                    console.log('akif');
                                     $('.minicart').trigger('count:update', response);
                                     var messageType = response.error ? 'alert-danger' : 'alert-success';
                                     if ($('.add-to-cart-messages').length === 0) {
