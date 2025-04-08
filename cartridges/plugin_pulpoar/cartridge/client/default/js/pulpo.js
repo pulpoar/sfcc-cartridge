@@ -1,15 +1,17 @@
 'use strict';
 
 function events() {
-    if (!pulpoar) {
-        return;
-    }
-    $(document).ready(function () {
+    $(function () {
+        if (!pulpoar) {
+            return;
+        }
+
         pulpoar.onGoToProduct((payload) => {
             if (payload[0].web_link) {
                 window.location.replace(payload[0].web_link);
             }
         });
+
         pulpoar.onAddToCart((payload) => {
             var addToCartUrl = $('.pulpo-sdk').data('add-to-cart-url');
             if (payload.length > 0) {
@@ -41,6 +43,12 @@ function events() {
                     }
                 });
             }
+        });
+
+        $(document).on('click', '[data-attr="color"] button', function (e) {
+            $('#pulpoModal').css('display','block').css('display','none');
+            var variant = $(this).find('span.color-value').data('attr-value').toLowerCase();
+            pulpoar.applyVariantsWithCatalog([variant]);
         });
     });
 }
