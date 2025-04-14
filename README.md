@@ -34,6 +34,7 @@ Each template in the following table is present in multiple cartridges. If the f
 | Template File | Cartridge | Location |
 | :--- | :--- | :--- |
 |productDetails.isml|app\_storefront\_base|cartridge/templates/default/product/productDetails.isml|
+|productDetails.isml|app\_storefront\_base|cartridge/templates/default/product/components/descriptionAndDetails.isml|
 
 
 # Getting Started

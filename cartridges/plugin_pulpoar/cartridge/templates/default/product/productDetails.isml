@@ -129,7 +129,7 @@
                             <isinclude template="product/components/socialIcons" />
                         </div>
 
-                        <isif condition="${pdict.enablePulpo}">
+                        <isif condition="${pdict.enablePulpo && pdict.pulpoIntegrationStyle != 'embed'}">
                             <div class="row">
                                 <div class="col-12">
                                     <isinclude template="modals/pulpoModal"/>

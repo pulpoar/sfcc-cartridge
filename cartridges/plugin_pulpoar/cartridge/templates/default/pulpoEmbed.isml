@@ -1,0 +1,3 @@
+<div class="col-sm-12 col-md-8 col-lg-9 value content" id="collapsible-pulpo-1">
+    <iframe src="https://plugin.pulpoar.com/vto/${pdict.pulpoARSlug}/product/${product.id.toLowerCase()}" allow="camera *;" style="border: none;width: 100%;height: 720px;"></iframe>
+</div>
