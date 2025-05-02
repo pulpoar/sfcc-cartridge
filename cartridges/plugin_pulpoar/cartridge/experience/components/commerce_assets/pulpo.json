@@ -1,0 +1,22 @@
+{
+    "name": "Pulpo AR",
+    "description": "Pulpo AR iFrame Integration",
+    "group": "commerce_assets",
+    "attribute_definition_groups": [
+        {
+            "id": "pulpoConfigs",
+            "name": "Pulpo AR Configurations",
+            "description": "Pulpo AR Configurations",
+            "attribute_definitions": [
+                {
+                    "id": "pulpoProjectSlug",
+                    "name": "Pulpo AR Project Slug",
+                    "description": "Use this configuration override site preference project slug.",
+                    "type": "string",
+                    "required": false
+                }
+            ]
+        }
+    ],
+    "region_definitions": []
+}
