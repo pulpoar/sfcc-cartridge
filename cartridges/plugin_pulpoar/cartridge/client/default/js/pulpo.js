@@ -50,6 +50,11 @@ function events() {
             var variant = $(this).find('span.color-value').data('attr-value').toLowerCase();
             pulpoar.applyVariantsWithCatalog([variant]);
         });
+
+        $(document).on('click', '#toggle-pulpo', function (e) {
+            $('#pulpo-image-embed').toggleClass('d-none');
+            $('.primary-images').toggleClass('d-none');
+        });
     });
 }
 

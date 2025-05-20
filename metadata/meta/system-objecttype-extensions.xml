@@ -14,6 +14,18 @@
                 <order-required-flag>false</order-required-flag>
                 <externally-defined-flag>false</externally-defined-flag>
             </attribute-definition>
+            <attribute-definition attribute-id="thumbnailColor">
+                <display-name xml:lang="x-default">Thumbnail Color</display-name>
+                <type>string</type>
+                <localizable-flag>false</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <visible-flag>false</visible-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <order-required-flag>false</order-required-flag>
+                <externally-defined-flag>false</externally-defined-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
             <attribute-definition attribute-id="pulpoIntegrationStyle">
                 <display-name xml:lang="x-default">Pulpo Integration Style</display-name>
                 <type>enum-of-string</type>
@@ -30,16 +42,33 @@
                         <value>popup</value>
                     </value-definition>
                     <value-definition>
-                        <display xml:lang="x-default">Embed</display>
+                        <display xml:lang="x-default">Embed to Details</display>
                         <value>embed</value>
                     </value-definition>
+                    <value-definition>
+                        <display xml:lang="x-default">Embed to Images</display>
+                        <value>image</value>
+                    </value-definition>
                 </value-definitions>
+            </attribute-definition>
+            <attribute-definition attribute-id="brandImg">
+                <display-name xml:lang="x-default">Brand Image</display-name>
+                <type>image</type>
+                <localizable-flag>false</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <visible-flag>false</visible-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <order-required-flag>false</order-required-flag>
+                <externally-defined-flag>false</externally-defined-flag>
             </attribute-definition>
         </custom-attribute-definitions>
         <group-definitions>
             <attribute-group group-id="PulpoAR">
                 <display-name xml:lang="x-default">Pulpo AR Configs</display-name>
                 <attribute attribute-id="enablePulpoAR"/>
+                <attribute attribute-id="thumbnailColor"/>
+                <attribute attribute-id="brandImg"/>
                 <attribute attribute-id="pulpoIntegrationStyle"/>
             </attribute-group>
         </group-definitions>

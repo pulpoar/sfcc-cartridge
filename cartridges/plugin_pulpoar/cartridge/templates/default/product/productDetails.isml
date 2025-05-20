@@ -31,6 +31,12 @@
                 <!-- Product Images Carousel -->
                 <isinclude template="product/components/imageCarousel" />
 
+                <isif condition="${pdict.pulpoIntegrationStyle === 'image'}">
+                    <div id="pulpo-image-embed" class="col-12 col-sm-6 d-none">
+                        <iframe src="https://plugin.pulpoar.com/vto/${pdict.pulpoARSlug}/product/${product.id.toLowerCase()}" allow="camera *;" style="border: none;width: 100%;height: 720px;"></iframe>
+                    </div>
+                </isif>
+
                 <div class="col-12 col-sm-6">
                     <!--Breadcrumbs-->
                     <div class="row">
@@ -129,13 +135,20 @@
                             <isinclude template="product/components/socialIcons" />
                         </div>
 
-                        <isif condition="${pdict.enablePulpo && pdict.pulpoIntegrationStyle != 'embed'}">
+                        <isif condition="${pdict.enablePulpo}">
                             <div class="row">
                                 <div class="col-12">
-                                    <isinclude template="modals/pulpoModal"/>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#pulpoModal">
-                                        <i class="fa fa-star"></i> ${Resource.msg('pulpo.product.button.title','pulpo',null)}
-                                    </button>
+                                    <isif condition="${pdict.pulpoIntegrationStyle === 'popup'}">
+                                        <isinclude template="modals/pulpoModal"/>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#pulpoModal">
+                                            <i class="fa fa-star"></i> ${Resource.msg('pulpo.product.button.title','pulpo',null)}
+                                        </button>
+                                    </isif>
+                                    <isif condition="${pdict.pulpoIntegrationStyle === 'image'}">
+                                        <button class="btn btn-primary" id="toggle-pulpo">
+                                            <i class="fa fa-star"></i> ${Resource.msg('pulpo.product.button.title','pulpo',null)}
+                                        </button>
+                                    </isif>
                                 </div>
                             </div>
                         </isif>

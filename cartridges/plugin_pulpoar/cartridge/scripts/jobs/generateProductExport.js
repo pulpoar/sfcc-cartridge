@@ -59,8 +59,13 @@ function read() {
  * @param {Object} apiProduct - The product.
  * @returns {Object|null} Enriched representation of the product or null if the product is not suitable for the feed.
  */
-function process(apiProduct) {
-    return apiProduct;
+function process(apiProduct, params) {
+    if ((params.ProcessProducts === 'ENABLED' && apiProduct.custom.enablePulpoAR) || params.ProcessProducts === 'ALL') {
+        if (apiProduct.master) {
+            return apiProduct;
+        }
+    }
+    return {};
 }
 
 /**
@@ -71,10 +76,44 @@ function process(apiProduct) {
 function write(products, params) {
     collections.forEach(products, function (product) {
         var productObj = {};
-        if ((params.ProcessProducts === 'ENABLED' && product.custom.enablePulpoAR) || params.ProcessProducts === 'ALL') {
-            // TODO: Add related product data when data format is decided.
-            productObj.ID = product.ID;
+        if (product instanceof dw.catalog.Product) {
+            var prodImg = product.getImage('large');
+            productObj.id = product.ID;
             productObj.name = product.name;
+            productObj.image = prodImg ? prodImg.absURL.toString() : '';
+            productObj.slug = product.ID;
+            if (product.variants.length > 0) {
+                var variants = [];
+                collections.forEach(product.variants, function(variantProduct) {
+                    if (variantProduct.online) {
+                        var variant = {};
+                        var variantImg = variantProduct.getImage('large');
+                        var variationValue = variantProduct.variationModel.getVariationValue(variantProduct, variantProduct.variationModel.productVariationAttributes[0]);
+                        variant.id = variantProduct.ID;
+                        variant.name = variantProduct.name;
+                        variant.image = variantImg ? variantImg.absURL.toString() : '';
+                        variant.thumbnail_color = variantProduct.custom.thumbnailColor;
+                        variant.slug = variationValue.value;
+                        variant.custom_slug = variantProduct.ID;
+                        variant.barcode = variant.EAN;
+                        variants.push(variant);
+                    }
+                });
+                productObj.variants = variants;
+            }
+            productObj.brand = {};
+            var brand = product.brand ? product.brand.toLowerCase().trim().replace(' ','-') : '';
+            productObj.brand.id = brand;
+            productObj.brand.name = product.brand;
+            productObj.brand.image = product.custom.brandImg ? product.custom.brandImg.absURL.toString() : '';
+            productObj.brand.slug = brand;
+            productObj.brand.custom_slug = '';
+            productObj.category = {};
+            productObj.category.id = product.primaryCategory ? product.primaryCategory.ID : '';
+            productObj.category.name = product.primaryCategory ? product.primaryCategory.displayName : '';
+            productObj.category.image = product.primaryCategory ? product.primaryCategory.image.absURL.toString() : '';
+            productObj.category.slug = productObj.category.id;
+            productObj.category.custom_slug = '';
             productArray.push(productObj);
         }
     });
